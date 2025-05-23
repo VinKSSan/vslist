@@ -1,6 +1,7 @@
 package com.vinsaned.vslist.dto;
 
 import com.vinsaned.vslist.etities.Game;
+import com.vinsaned.vslist.projections.GameMinProjection;
 import jakarta.persistence.Column;
 
 public class GameMinDto {
@@ -17,6 +18,13 @@ public class GameMinDto {
         year = entity.getYear();
         imgUrl = entity.getImgUrl();
         shortDescription = entity.getShortDescription();
+    }
+    public GameMinDto(GameMinProjection projection) {
+        id = projection.getId();
+        title = projection.getTitle();
+        year = projection.getYear();
+        imgUrl = projection.getImgUrl();
+        shortDescription = projection.getShortDescription();
     }
 
     public Long getId() {

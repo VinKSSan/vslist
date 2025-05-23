@@ -3,6 +3,7 @@ package com.vinsaned.vslist.service;
 import com.vinsaned.vslist.dto.GameDto;
 import com.vinsaned.vslist.dto.GameMinDto;
 import com.vinsaned.vslist.etities.Game;
+import com.vinsaned.vslist.projections.GameMinProjection;
 import com.vinsaned.vslist.repositories.GameRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,12 @@ public class GameService {
         return games.stream()
                 .map(GameMinDto::new)
                 .toList();
+    }
+
+    @Transactional
+    public List<GameMinDto> findByList(Long listId){
+        List<GameMinProjection> listProjection = gameRepository.searchByList(listId);
+        return listProjection.stream().map(GameMinDto::new).toList();
     }
 
 }
